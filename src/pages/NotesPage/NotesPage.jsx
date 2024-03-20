@@ -11,6 +11,12 @@ export default function NotesPage() {
         const newNote = await notesAPI.createNote(note);
         setNotes([...notes, newNote]);
     };
+    
+    async function deleteNote(noteId) {
+        await notesAPI.deleteNote(noteId);
+        const updatedNotesList = notes.filter((n) => n._id !== noteId);
+        setNotes(updatedNotesList);
+    };
 
     useEffect(() => {
         notesAPI.getNote().then((notes) => {
@@ -18,9 +24,6 @@ export default function NotesPage() {
         });
     }, []);
 
-    async function deleteNote(noteId) {
-        await notesAPI.deleteNote(noteId);
-    };
 
 
     return (
