@@ -1,11 +1,12 @@
 import { useState } from "react";
 
-export default function NotesItem({addNote}) {
+export default function NotesForm({addNote}) {
 
     const [newNote, setNewNote] = useState('');
 
 
     function _handleSubmit(event) {
+        event.preventDefault();
         addNote(newNote);
         setNewNote('');
     }
